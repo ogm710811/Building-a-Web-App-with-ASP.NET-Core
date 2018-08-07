@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Dutch Treat:  @ViewBag.Title</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link href="~/css/site.css" rel="stylesheet"/>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand text-white"><i class="fas fa-paint-brush px-2"></i>Dutch Treat</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-controller="App" asp-action="Index">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="App" asp-action="Contact">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="App" asp-action="About">About Us</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>   
+    <main class="container-fluid">
+        <h2 class="text-center">@ViewBag.Title</h2>
+        @RenderBody()
+    </main>
+    <footer class="footer">
+        <div class="container-fluid">
+            <span class="text-muted">Copyright 2018 Dutch Treat LLC</span>
+        </div>
+    </footer>
+
+    <script src="~/lib/jQuery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/js/index.js"></script>
+    @RenderSection("scripts", false)
+</body>
+</html>
+
