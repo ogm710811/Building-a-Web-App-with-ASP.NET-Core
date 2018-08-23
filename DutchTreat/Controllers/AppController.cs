@@ -11,12 +11,16 @@ namespace DutchTreat.Controllers
     public class AppController: Controller
     {
         private readonly IMailService _mailService;
-        private readonly DutchContext _context;
+        private readonly IDutchRepository _repository;
 
-        public AppController(IMailService mailService, DutchContext context)
+        //private readonly DutchContext _context;
+
+        //public AppController(IMailService mailService, DutchContext context)
+        public AppController(IMailService mailService, IDutchRepository repository)
         {
             this._mailService = mailService;
-            this._context = context;
+            this._repository = repository;
+            //this._context = context;
         }
 
         public IActionResult Index()
@@ -33,7 +37,7 @@ namespace DutchTreat.Controllers
         }
 
         [HttpPost("contact")]
-        public IActionResult Contact(Models.Contact model)
+        public IActionResult Contact(Models.ContactViewModel model)
         {
             ViewBag.Title = "Contact Us";
             if (ModelState.IsValid)
@@ -60,11 +64,13 @@ namespace DutchTreat.Controllers
             //    .ToList();
 
             // same query using Linq Query
-            var result = from p in _context.Products
-                         orderby p.Category
-                         select p;
+            //var result = from p in _context.Products
+            //             orderby p.Category
+            //             select p;
 
-            return View(result.ToList());
+            var result = _repository.GetAllProducts();
+
+            return View(result);
         }
     }
 }
