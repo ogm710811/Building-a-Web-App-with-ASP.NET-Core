@@ -63,7 +63,7 @@ using DutchTreat.Models;
             WriteLiteral("<div class=\"row no-gutters\">\r\n    <div class=\"col-md-9\">\r\n        <div class=\"product-info\">\r\n            ");
             EndContext();
             BeginContext(147, 31, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "2d655f37da3d49e2ad4a8f534174f534", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "e11cd4b2f8f5472f8b97964b08f7992d", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -92,7 +92,7 @@ using DutchTreat.Models;
             ");
             EndContext();
             BeginContext(565, 624, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e5c64128bcea4d18ac30e812c1e62858", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6c6c5d83e054472aab37953c6ae96433", async() => {
                 BeginContext(571, 611, true);
                 WriteLiteral(@"
                 <label>Name:</label>
@@ -132,7 +132,7 @@ using DutchTreat.Models;
             WriteLiteral("\r\n        </div>\r\n        <div id=\"login-toggle\">\r\n            Login\r\n        </div>\r\n        ");
             EndContext();
             BeginContext(1283, 511, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c9c0755c8b49458c95ca4f81238e7066", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c9c91de6fad9479598a8aeac5692444e", async() => {
                 BeginContext(1308, 479, true);
                 WriteLiteral(@"
             <div>

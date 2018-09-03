@@ -74,7 +74,7 @@ using DutchTreat.Models;
             WriteLiteral("            <div class=\"card-group p-3\">\r\n                <div class=\"card\" style=\"width: 18rem;\">\r\n                    ");
             EndContext();
             BeginContext(353, 74, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "1956db0798474b0bb8c0e70ef6e0d803", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "e77a11bb3bd14cdab7759cb426e4175c", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
