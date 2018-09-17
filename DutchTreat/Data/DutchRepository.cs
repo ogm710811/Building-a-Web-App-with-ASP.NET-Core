@@ -1,10 +1,11 @@
-﻿using DutchTreat.Data.Entities;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using DutchTreat.Data.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace DutchTreat.Data
 {
@@ -15,8 +16,8 @@ namespace DutchTreat.Data
 
         public DutchRepository(DutchContext ctx, ILogger<DutchRepository> logger)
         {
-            this._ctx = ctx;
-            this._logger = logger;
+            _ctx = ctx;
+            _logger = logger;
         }
 
         public void AddEntity(object model)
@@ -24,18 +25,52 @@ namespace DutchTreat.Data
             _ctx.Add(model);
         }
 
+        public void AddOrder(Order newOrder)
+        {
+            // Convert new products to lookup of product
+            foreach (var item in newOrder.Items)
+            {
+                item.Product = _ctx.Products.Find(item.Product.Id);
+            }
+
+            AddEntity(newOrder);
+        }
+
         public IEnumerable<Order> GetAllOrders(bool includeItems)
         {
             if (includeItems)
             {
+
                 return _ctx.Orders
-                            .Include(o => o.Items)
-                            .ThenInclude(i => i.Product)
-                            .ToList();
-            } else
+                           .Include(o => o.Items)
+                           .ThenInclude(i => i.Product)
+                           .ToList();
+
+            }
+            else
             {
                 return _ctx.Orders
-                            .ToList();
+                           .ToList();
+            }
+        }
+
+        public IEnumerable<Order> GetAllOrdersByUser(string username, bool includeItems)
+        {
+            if (includeItems)
+            {
+
+                return _ctx.Orders
+                           .Where(o => o.User.UserName == username)
+                           .Include(o => o.Items)
+                           .ThenInclude(i => i.Product)
+                           .ToList();
+
+            }
+            else
+            {
+                return _ctx.Orders
+                           .Where(o => o.User.UserName == username)
+                           .ToList();
             }
         }
 
@@ -44,6 +79,7 @@ namespace DutchTreat.Data
             try
             {
                 _logger.LogInformation("GetAllProducts was called");
+
                 return _ctx.Products
                            .OrderBy(p => p.Title)
                            .ToList();
@@ -55,43 +91,25 @@ namespace DutchTreat.Data
             }
         }
 
-        public Order GetOrderById(int id)
+        public Order GetOrderById(string username, int id)
         {
             return _ctx.Orders
                        .Include(o => o.Items)
                        .ThenInclude(i => i.Product)
-                       .Where(o => o.Id == id)
+                       .Where(o => o.Id == id && o.User.UserName == username)
                        .FirstOrDefault();
         }
 
-        public IEnumerable<Product> GetProductByCategory(string category)
+        public IEnumerable<Product> GetProductsByCategory(string category)
         {
-            try
-            {
-                _logger.LogInformation("GetProductByCategory was called");
-                return _ctx.Products
-                               .Where(p => p.Category == category)
-                               .ToList();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Failed to get products by categories: {ex}");
-                return null;
-            }
+            return _ctx.Products
+                       .Where(p => p.Category == category)
+                       .ToList();
         }
 
         public bool SaveAll()
         {
-            try
-            {
-                _logger.LogInformation("SaveAll was called");
-                return _ctx.SaveChanges() > 0;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Failed to save all: {ex}");
-                return false;
-            }
+            return _ctx.SaveChanges() > 0;
         }
     }
 }

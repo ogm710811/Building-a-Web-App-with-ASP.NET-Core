@@ -1,32 +1,38 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using AutoMapper;
 using DutchTreat.Data;
 using DutchTreat.Data.Entities;
 using DutchTreat.ViewModels;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DutchTreat.Controllers
 {
     [Route("api/[Controller]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class OrdersController : Controller
     {
         private readonly IDutchRepository _repository;
         private readonly ILogger<OrdersController> _logger;
         private readonly IMapper _mapper;
+        private readonly UserManager<StoreUser> _userManager;
 
-        public OrdersController(
-            IDutchRepository repository,
-            ILogger<OrdersController> logger,
-            IMapper mapper
-        )
+        public OrdersController(IDutchRepository repository,
+          ILogger<OrdersController> logger,
+          IMapper mapper,
+          UserManager<StoreUser> userManager)
         {
-            this._repository = repository;
-            this._logger = logger;
-            this._mapper = mapper;
+            _repository = repository;
+            _logger = logger;
+            _mapper = mapper;
+            _userManager = userManager;
         }
 
         [HttpGet]
@@ -34,9 +40,11 @@ namespace DutchTreat.Controllers
         {
             try
             {
-                var results = _repository.GetAllOrders(includeItems);
-                return Ok(_mapper.Map<IEnumerable<Order>, IEnumerable<OrderViewModel>>(results));
+                var username = User.Identity.Name;
 
+                var results = _repository.GetAllOrdersByUser(username, includeItems);
+
+                return Ok(_mapper.Map<IEnumerable<Order>, IEnumerable<OrderViewModel>>(results));
             }
             catch (Exception ex)
             {
@@ -50,34 +58,26 @@ namespace DutchTreat.Controllers
         {
             try
             {
-                var order = _repository.GetOrderById(id);
+                var order = _repository.GetOrderById(User.Identity.Name, id);
 
                 if (order != null) return Ok(_mapper.Map<Order, OrderViewModel>(order));
-                else return NotFound();               
-
+                else return NotFound();
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Failed to get order by id: {id}: {ex}");
-                return BadRequest($"Failed to get order by id: {id}");
+                _logger.LogError($"Failed to get orders: {ex}");
+                return BadRequest("Failed to get orders");
             }
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]OrderViewModel model)
+        public async Task<IActionResult> Post([FromBody]OrderViewModel model)
         {
+            // add it to the db
             try
             {
                 if (ModelState.IsValid)
                 {
-                    //var newOrder = new Order()
-                    //{
-                    //    OrderDate = model.OrderDate,
-                    //    OrderNumber = model.OrderNumber,
-                    //    Id = model.OrderId
-                    //};
-
-                    // using mapper
                     var newOrder = _mapper.Map<OrderViewModel, Order>(model);
 
                     if (newOrder.OrderDate == DateTime.MinValue)
@@ -85,30 +85,37 @@ namespace DutchTreat.Controllers
                         newOrder.OrderDate = DateTime.Now;
                     }
 
-                    _repository.AddEntity(newOrder);
+                    var currentUser = await _userManager.FindByNameAsync(User.Identity.Name);
+                    newOrder.User = currentUser;
+
+                    _repository.AddOrder(newOrder);
                     if (_repository.SaveAll())
                     {
-                        //var vm = new OrderViewModel()
-                        //{
-                        //    OrderId = newOrder.Id,
-                        //    OrderDate = newOrder.OrderDate,
-                        //    OrderNumber = newOrder.OrderNumber
-                        //};
-
                         return Created($"/api/orders/{newOrder.Id}", _mapper.Map<Order, OrderViewModel>(newOrder));
-                    } 
-                } else
+                    }
+                }
+                else
                 {
                     return BadRequest(ModelState);
                 }
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Failed to save new order: {ex}");
-                return BadRequest($"Failed to save new order");
+                _logger.LogError($"Failed to save a new order: {ex}");
             }
 
             return BadRequest("Failed to save new order");
         }
+
     }
 }
+
+
+
+
+
+
+
+
+
+
