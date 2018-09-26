@@ -12306,11 +12306,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Developer Projects by Tech\\ASP.NET Core\\Building a Web App with ASP.NET Core - PLURALSIGHT\\DutchTreat\\DutchTreat\\DutchTreat.csproj",
+      "projectUniqueName": "D:\\Developer Projects by Tech\\ASP.NET Core\\PLURALSIGHT\\Building-a-Web-App-with-ASP.NET-Core\\DutchTreat\\DutchTreat.csproj",
       "projectName": "DutchTreat",
-      "projectPath": "D:\\Developer Projects by Tech\\ASP.NET Core\\Building a Web App with ASP.NET Core - PLURALSIGHT\\DutchTreat\\DutchTreat\\DutchTreat.csproj",
+      "projectPath": "D:\\Developer Projects by Tech\\ASP.NET Core\\PLURALSIGHT\\Building-a-Web-App-with-ASP.NET-Core\\DutchTreat\\DutchTreat.csproj",
       "packagesPath": "C:\\Users\\OGM710811\\.nuget\\packages\\",
-      "outputPath": "D:\\Developer Projects by Tech\\ASP.NET Core\\Building a Web App with ASP.NET Core - PLURALSIGHT\\DutchTreat\\DutchTreat\\obj\\",
+      "outputPath": "D:\\Developer Projects by Tech\\ASP.NET Core\\PLURALSIGHT\\Building-a-Web-App-with-ASP.NET-Core\\DutchTreat\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
