@@ -70,9 +70,10 @@ namespace DutchTreat.Controllers
             //             orderby p.Category
             //             select p;
 
-            var result = _repository.GetAllProducts();
+            // getting rid of this line ones we implement angular 
+            //var result = _repository.GetAllProducts();
 
-            return View(result);
+            return View();
         }
     }
 }
