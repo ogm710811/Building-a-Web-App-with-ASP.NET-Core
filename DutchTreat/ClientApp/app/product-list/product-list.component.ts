@@ -1,13 +1,14 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
+import { Product } from '../interfaces/product';
 
 @Component({
     selector: 'product-list',
     templateUrl: './product-list.component.html',
-    styles: []
+    styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-    public products = [];
+    public products: Product[] = [];
 
     constructor(private dataService: DataService) { }
 

@@ -120,6 +120,17 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./app/product-list/product-list.component.css":
+/*!*****************************************************!*\
+  !*** ./app/product-list/product-list.component.css ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".product-info img {\r\n    max-width: 100px;\r\n    float: left;\r\n    margin: 0 2px;\r\n    border: solid 1px black;\r\n}\r\n\r\n.product-info .product-name {\r\n    font-size: large;\r\n    font-weight: bold;\r\n}\r\n"
+
+/***/ }),
+
 /***/ "./app/product-list/product-list.component.html":
 /*!******************************************************!*\
   !*** ./app/product-list/product-list.component.html ***!
@@ -127,7 +138,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n        <ul>\r\n            <li *ngFor=\"let p of products\">\r\n                {{p.title}} : {{p.price | currency}}\r\n            </li>\r\n        </ul>\r\n    </div>\r\n</div>\r\n"
+module.exports = "<div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n        <div class=\"product-info col-4\" *ngFor=\"let p of products\">\r\n            <div class=\"card bg-light p-1 m-1\">\r\n                <img src=\"/img/{{p.artId}}.jpg\" class=\"img-fluid\" [alt]=\"p.title\" />\r\n                <div class=\"product-name\">{{p.category}} - {{p.size}}</div>\r\n                <ul class=\"product-props\">\r\n                    <li><strong>Price:</strong> {{p.price | currency}}</li>\r\n                    <li><strong>Artist:</strong> {{p.artist}}</li>\r\n                    <li><strong>Title:</strong> {{p.title}}</li>\r\n                    <li><strong>Description:</strong> {{p.artDescription}}</li>\r\n                </ul>\r\n                <button id=\"buy-button\" class=\"btn btn-success\">Buy</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -172,7 +183,7 @@ var ProductListComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'product-list',
             template: __webpack_require__(/*! ./product-list.component.html */ "./app/product-list/product-list.component.html"),
-            styles: []
+            styles: [__webpack_require__(/*! ./product-list.component.css */ "./app/product-list/product-list.component.css")]
         }),
         __metadata("design:paramtypes", [_services_data_service__WEBPACK_IMPORTED_MODULE_1__["DataService"]])
     ], ProductListComponent);
