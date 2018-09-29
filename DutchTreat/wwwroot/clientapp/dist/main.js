@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\r\n    <div class=\"row no-gutters\">\r\n        <div class=\"col-9 p-0\">\r\n            <h3>{{title}}</h3>\r\n            <product-list></product-list>\r\n        </div>\r\n        <div class=\"col-3 p-0\">\r\n            <div class=\"card bg-light p-2\">\r\n                <h3>Cart</h3>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"container-fluid\">\r\n    <div class=\"row no-gutters\">\r\n        <div class=\"col-9 p-0\">\r\n            <h3>{{title}}</h3>\r\n            <product-list></product-list>\r\n        </div>\r\n        <div class=\"col-3 p-0\">\r\n            <div class=\"card bg-light p-2\">\r\n                <the-cart></the-cart>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -85,6 +85,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "../node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app.component */ "./app/app.component.ts");
 /* harmony import */ var _product_list_product_list_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./product-list/product-list.component */ "./app/product-list/product-list.component.ts");
+/* harmony import */ var _cart_cart_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./cart/cart.component */ "./app/cart/cart.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -96,6 +97,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+;
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -104,6 +107,7 @@ var AppModule = /** @class */ (function () {
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"],
                 _product_list_product_list_component__WEBPACK_IMPORTED_MODULE_4__["ProductListComponent"],
+                _cart_cart_component__WEBPACK_IMPORTED_MODULE_5__["CartComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -114,6 +118,113 @@ var AppModule = /** @class */ (function () {
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./app/cart/cart.component.html":
+/*!**************************************!*\
+  !*** ./app/cart/cart.component.html ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<h3>Shopping Cart</h3>\r\n<div>Number of Items:{{dataService.order.items.length}}</div>\r\n<div>Subtotal:{{dataService.order.subtotal | currency}}</div>\r\n<table class=\"table table-info table-hover\">\r\n    <thead>\r\n        <tr>\r\n            <td><strong>Product</strong></td>\r\n            <td><strong>Quantity</strong></td>\r\n            <td><strong>Price</strong></td>\r\n            <td><strong>Total</strong></td>\r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n        <tr *ngFor=\"let i of dataService.order.items\">\r\n            <td>{{i.productCategory}}</td>\r\n            <td>{{i.quantity}}</td>\r\n            <td>{{i.unitPrice | currency}}</td>\r\n            <td>{{(i.unitPrice * i.quantity) | currency}}</td>\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n"
+
+/***/ }),
+
+/***/ "./app/cart/cart.component.ts":
+/*!************************************!*\
+  !*** ./app/cart/cart.component.ts ***!
+  \************************************/
+/*! exports provided: CartComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CartComponent", function() { return CartComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services_data_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/data.service */ "./app/services/data.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var CartComponent = /** @class */ (function () {
+    function CartComponent(dataService) {
+        this.dataService = dataService;
+    }
+    CartComponent.prototype.ngOnInit = function () {
+    };
+    CartComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'the-cart',
+            template: __webpack_require__(/*! ./cart.component.html */ "./app/cart/cart.component.html"),
+            styleUrls: []
+        }),
+        __metadata("design:paramtypes", [_services_data_service__WEBPACK_IMPORTED_MODULE_1__["DataService"]])
+    ], CartComponent);
+    return CartComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./app/interfaces/order-item.ts":
+/*!**************************************!*\
+  !*** ./app/interfaces/order-item.ts ***!
+  \**************************************/
+/*! exports provided: OrderItem */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrderItem", function() { return OrderItem; });
+var OrderItem = /** @class */ (function () {
+    function OrderItem() {
+    }
+    return OrderItem;
+}());
+
+
+
+/***/ }),
+
+/***/ "./app/interfaces/order.ts":
+/*!*********************************!*\
+  !*** ./app/interfaces/order.ts ***!
+  \*********************************/
+/*! exports provided: Order */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Order", function() { return Order; });
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "../node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+
+var Order = /** @class */ (function () {
+    function Order() {
+        this.orderDate = new Date();
+        this.items = new Array();
+    }
+    Object.defineProperty(Order.prototype, "subtotal", {
+        get: function () {
+            return lodash__WEBPACK_IMPORTED_MODULE_0__["sum"](lodash__WEBPACK_IMPORTED_MODULE_0__["map"](this.items, function (i) { return i.unitPrice * i.quantity; }));
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return Order;
 }());
 
 
@@ -138,7 +249,7 @@ module.exports = ".product-info img {\r\n    max-width: 100px;\r\n    float: lef
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n        <div class=\"product-info col-4\" *ngFor=\"let p of products\">\r\n            <div class=\"card bg-light p-1 m-1\">\r\n                <img src=\"/img/{{p.artId}}.jpg\" class=\"img-fluid\" [alt]=\"p.title\" />\r\n                <div class=\"product-name\">{{p.category}} - {{p.size}}</div>\r\n                <ul class=\"product-props\">\r\n                    <li><strong>Price:</strong> {{p.price | currency}}</li>\r\n                    <li><strong>Artist:</strong> {{p.artist}}</li>\r\n                    <li><strong>Title:</strong> {{p.title}}</li>\r\n                    <li><strong>Description:</strong> {{p.artDescription}}</li>\r\n                </ul>\r\n                <button id=\"buy-button\" class=\"btn btn-success\">Buy</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
+module.exports = "<div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n        <div class=\"product-info col-4\" *ngFor=\"let p of products\">\r\n            <div class=\"card bg-light p-1 m-1\">\r\n                <img src=\"/img/{{p.artId}}.jpg\" class=\"img-fluid\" [alt]=\"p.title\" />\r\n                <div class=\"product-name\">{{p.category}} - {{p.size}}</div>\r\n                <ul class=\"product-props\">\r\n                    <li><strong>Price:</strong> {{p.price | currency}}</li>\r\n                    <li><strong>Artist:</strong> {{p.artist}}</li>\r\n                    <li><strong>Title:</strong> {{p.title}}</li>\r\n                    <li><strong>Description:</strong> {{p.artDescription}}</li>\r\n                </ul>\r\n                <button id=\"buy-button\" class=\"btn btn-success\" (click)=\"addProduct(p)\">Buy</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -179,6 +290,9 @@ var ProductListComponent = /** @class */ (function () {
             }
         });
     };
+    ProductListComponent.prototype.addProduct = function (product) {
+        this.dataService.addToOrder(product);
+    };
     ProductListComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'product-list',
@@ -207,6 +321,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "../node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "../node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "../node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _interfaces_order__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../interfaces/order */ "./app/interfaces/order.ts");
+/* harmony import */ var _interfaces_order_item__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../interfaces/order-item */ "./app/interfaces/order-item.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -219,10 +335,13 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var DataService = /** @class */ (function () {
     function DataService(http) {
         this.http = http;
         this.products = [];
+        this.order = new _interfaces_order__WEBPACK_IMPORTED_MODULE_3__["Order"]();
     }
     DataService.prototype.loadProducts = function () {
         var _this = this;
@@ -231,6 +350,24 @@ var DataService = /** @class */ (function () {
             _this.products = data;
             return true;
         }));
+    };
+    DataService.prototype.addToOrder = function (newProduct) {
+        var item = this.order.items.find(function (item) { return item.id == newProduct.id; });
+        if (item) {
+            item.quantity++;
+        }
+        else {
+            item = new _interfaces_order_item__WEBPACK_IMPORTED_MODULE_4__["OrderItem"]();
+            item.id = newProduct.id;
+            item.productArtist = newProduct.artist;
+            item.productArtId = newProduct.artId;
+            item.productCategory = newProduct.category;
+            item.productSize = newProduct.size;
+            item.productTitle = newProduct.title;
+            item.unitPrice = newProduct.price;
+            item.quantity = 1;
+            this.order.items.push(item);
+        }
     };
     DataService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({

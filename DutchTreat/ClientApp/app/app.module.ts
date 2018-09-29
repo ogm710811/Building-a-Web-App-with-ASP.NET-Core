@@ -3,12 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { ProductListComponent } from './product-list/product-list.component';
+import { ProductListComponent } from './product-list/product-list.component';;
+import { CartComponent } from './cart/cart.component'
 
 @NgModule({
     declarations: [
         AppComponent,
         ProductListComponent,
+        CartComponent
     ],
     imports: [
         BrowserModule,

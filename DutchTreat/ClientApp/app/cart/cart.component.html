@@ -1,0 +1,21 @@
+﻿<h3>Shopping Cart</h3>
+<div>Number of Items:{{dataService.order.items.length}}</div>
+<div>Subtotal:{{dataService.order.subtotal | currency}}</div>
+<table class="table table-info table-hover">
+    <thead>
+        <tr>
+            <td><strong>Product</strong></td>
+            <td><strong>Quantity</strong></td>
+            <td><strong>Price</strong></td>
+            <td><strong>Total</strong></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let i of dataService.order.items">
+            <td>{{i.productCategory}}</td>
+            <td>{{i.quantity}}</td>
+            <td>{{i.unitPrice | currency}}</td>
+            <td>{{(i.unitPrice * i.quantity) | currency}}</td>
+        </tr>
+    </tbody>
+</table>

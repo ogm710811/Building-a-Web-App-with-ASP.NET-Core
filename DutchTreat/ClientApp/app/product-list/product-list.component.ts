@@ -21,4 +21,8 @@ export class ProductListComponent implements OnInit {
             })
     }
 
+    addProduct(product: Product) {
+        this.dataService.addToOrder(product);
+    }
+
 }

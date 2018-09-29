@@ -9,29 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component } from '@angular/core';
 import { DataService } from '../services/data.service';
-var ProductListComponent = /** @class */ (function () {
-    function ProductListComponent(dataService) {
+var CartComponent = /** @class */ (function () {
+    function CartComponent(dataService) {
         this.dataService = dataService;
-        this.products = [];
     }
-    ProductListComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.dataService.loadProducts()
-            .subscribe(function (success) {
-            if (success) {
-                _this.products = _this.dataService.products;
-            }
-        });
+    CartComponent.prototype.ngOnInit = function () {
     };
-    ProductListComponent = __decorate([
+    CartComponent = __decorate([
         Component({
-            selector: 'product-list',
-            templateUrl: './product-list.component.html',
-            styleUrls: ['./product-list.component.css']
+            selector: 'the-cart',
+            templateUrl: './cart.component.html',
+            styleUrls: []
         }),
         __metadata("design:paramtypes", [DataService])
-    ], ProductListComponent);
-    return ProductListComponent;
+    ], CartComponent);
+    return CartComponent;
 }());
-export { ProductListComponent };
-//# sourceMappingURL=product-list.component.js.map
+export { CartComponent };
+//# sourceMappingURL=cart.component.js.map
