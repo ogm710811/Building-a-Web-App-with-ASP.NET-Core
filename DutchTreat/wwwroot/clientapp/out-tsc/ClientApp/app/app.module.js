@@ -7,10 +7,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './product-list/product-list.component';
 ;
 import { CartComponent } from './cart/cart.component';
+import { ShopComponent } from './shop/shop.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+var appRoutes = [
+    { path: "", component: ShopComponent },
+    { path: "checkout", component: CheckoutComponent }
+];
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -19,11 +26,17 @@ var AppModule = /** @class */ (function () {
             declarations: [
                 AppComponent,
                 ProductListComponent,
-                CartComponent
+                CartComponent,
+                ShopComponent,
+                CheckoutComponent
             ],
             imports: [
                 BrowserModule,
-                HttpClientModule
+                HttpClientModule,
+                RouterModule.forRoot(appRoutes, {
+                    useHash: true,
+                    enableTracing: true // for debugging of the routes
+                })
             ],
             providers: [],
             bootstrap: [AppComponent]

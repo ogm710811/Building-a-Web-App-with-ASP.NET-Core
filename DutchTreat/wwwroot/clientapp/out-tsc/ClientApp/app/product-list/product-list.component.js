@@ -23,6 +23,9 @@ var ProductListComponent = /** @class */ (function () {
             }
         });
     };
+    ProductListComponent.prototype.addProduct = function (product) {
+        this.dataService.addToOrder(product);
+    };
     ProductListComponent = __decorate([
         Component({
             selector: 'product-list',
