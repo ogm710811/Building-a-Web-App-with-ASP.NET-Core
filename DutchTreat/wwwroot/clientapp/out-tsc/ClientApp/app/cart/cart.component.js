@@ -9,11 +9,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component } from '@angular/core';
 import { DataService } from '../services/data.service';
+import { Router } from '@angular/router';
 var CartComponent = /** @class */ (function () {
-    function CartComponent(dataService) {
+    function CartComponent(dataService, router) {
         this.dataService = dataService;
+        this.router = router;
     }
     CartComponent.prototype.ngOnInit = function () {
+    };
+    CartComponent.prototype.onCheckout = function () {
+        if (this.dataService.loginRequired) {
+            // force to login
+            this.router.navigate(['login']);
+        }
+        else {
+            //goto checkout
+            this.router.navigate(['checkout']);
+        }
     };
     CartComponent = __decorate([
         Component({
@@ -21,7 +33,8 @@ var CartComponent = /** @class */ (function () {
             templateUrl: './cart.component.html',
             styleUrls: []
         }),
-        __metadata("design:paramtypes", [DataService])
+        __metadata("design:paramtypes", [DataService,
+            Router])
     ], CartComponent);
     return CartComponent;
 }());

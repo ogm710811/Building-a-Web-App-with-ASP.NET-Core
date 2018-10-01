@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DutchTreat.Controllers
 {
-    public class AppController: Controller
+    public class AppController : Controller
     {
         private readonly IMailService _mailService;
         private readonly IDutchRepository _repository;
@@ -58,7 +58,7 @@ namespace DutchTreat.Controllers
             return View();
         }
 
-        [Authorize]
+        // [Authorize]
         public IActionResult Shop()
         {
             //var result = _context.Products

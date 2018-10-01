@@ -14,9 +14,11 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { CartComponent } from './cart/cart.component';
 import { ShopComponent } from './shop/shop.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { LoginComponent } from './login/login.component';
 var appRoutes = [
     { path: "", component: ShopComponent },
-    { path: "checkout", component: CheckoutComponent }
+    { path: "checkout", component: CheckoutComponent },
+    { path: "login", component: LoginComponent }
 ];
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -28,14 +30,15 @@ var AppModule = /** @class */ (function () {
                 ProductListComponent,
                 CartComponent,
                 ShopComponent,
-                CheckoutComponent
+                CheckoutComponent,
+                LoginComponent
             ],
             imports: [
                 BrowserModule,
                 HttpClientModule,
                 RouterModule.forRoot(appRoutes, {
                     useHash: true,
-                    enableTracing: true // for debugging of the routes
+                    enableTracing: false // for debugging of the routes
                 })
             ],
             providers: [],

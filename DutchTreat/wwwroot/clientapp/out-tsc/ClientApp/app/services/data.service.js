@@ -17,7 +17,15 @@ var DataService = /** @class */ (function () {
         this.http = http;
         this.products = [];
         this.order = new Order();
+        this.token = '';
     }
+    Object.defineProperty(DataService.prototype, "loginRequired", {
+        get: function () {
+            return this.token.length == 0 || this.tokenExpiration > new Date();
+        },
+        enumerable: true,
+        configurable: true
+    });
     DataService.prototype.loadProducts = function () {
         var _this = this;
         return this.http.get("/api/products")
