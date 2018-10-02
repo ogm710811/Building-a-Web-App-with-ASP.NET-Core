@@ -68,7 +68,6 @@ D:\Developer Projects by Tech\ASP.NET Core\PLURALSIGHT\Building-a-Web-App-with-A
 D:\Developer Projects by Tech\ASP.NET Core\PLURALSIGHT\Building-a-Web-App-with-ASP.NET-Core\DutchTreat\bin\Debug\netcoreapp2.1\DutchTreat.pdb
 D:\Developer Projects by Tech\ASP.NET Core\PLURALSIGHT\Building-a-Web-App-with-ASP.NET-Core\DutchTreat\bin\Debug\netcoreapp2.1\DutchTreat.Views.dll
 D:\Developer Projects by Tech\ASP.NET Core\PLURALSIGHT\Building-a-Web-App-with-ASP.NET-Core\DutchTreat\bin\Debug\netcoreapp2.1\DutchTreat.Views.pdb
-D:\Developer Projects by Tech\ASP.NET Core\PLURALSIGHT\Building-a-Web-App-with-ASP.NET-Core\DutchTreat\obj\Debug\netcoreapp2.1\DutchTreat.csprojAssemblyReference.cache
 D:\Developer Projects by Tech\ASP.NET Core\PLURALSIGHT\Building-a-Web-App-with-ASP.NET-Core\DutchTreat\obj\Debug\netcoreapp2.1\DutchTreat.csproj.CoreCompileInputs.cache
 D:\Developer Projects by Tech\ASP.NET Core\PLURALSIGHT\Building-a-Web-App-with-ASP.NET-Core\DutchTreat\obj\Debug\netcoreapp2.1\DutchTreat.RazorAssemblyInfo.cache
 D:\Developer Projects by Tech\ASP.NET Core\PLURALSIGHT\Building-a-Web-App-with-ASP.NET-Core\DutchTreat\obj\Debug\netcoreapp2.1\DutchTreat.RazorAssemblyInfo.cs
@@ -93,3 +92,4 @@ D:\Developer Projects by Tech\ASP.NET Core\PLURALSIGHT\Building-a-Web-App-with-A
 D:\Developer Projects by Tech\ASP.NET Core\PLURALSIGHT\Building-a-Web-App-with-ASP.NET-Core\DutchTreat\obj\Debug\netcoreapp2.1\DutchTreat.dll
 D:\Developer Projects by Tech\ASP.NET Core\PLURALSIGHT\Building-a-Web-App-with-ASP.NET-Core\DutchTreat\obj\Debug\netcoreapp2.1\DutchTreat.pdb
 D:\Developer Projects by Tech\ASP.NET Core\PLURALSIGHT\Building-a-Web-App-with-ASP.NET-Core\DutchTreat\obj\Debug\netcoreapp2.1\DutchTreat.csproj.CopyComplete
+D:\Developer Projects by Tech\ASP.NET Core\PLURALSIGHT\Building-a-Web-App-with-ASP.NET-Core\DutchTreat\obj\Debug\netcoreapp2.1\DutchTreat.csprojAssemblyReference.cache

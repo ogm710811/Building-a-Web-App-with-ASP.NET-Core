@@ -8,14 +8,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from "@angular/core";
-import { DataService } from "../services/data.service";
+import { DataService } from "../services/dataService";
+import { Router } from "@angular/router";
 var CheckoutComponent = /** @class */ (function () {
-    function CheckoutComponent(dataService) {
+    function CheckoutComponent(dataService, router) {
         this.dataService = dataService;
+        this.router = router;
+        this.errorMessage = '';
     }
     CheckoutComponent.prototype.onCheckout = function () {
-        // TODO
-        alert("Doing checkout");
+        var _this = this;
+        this.dataService.checkout()
+            .subscribe(function (success) {
+            if (success) {
+                _this.router.navigate(['/']);
+            }
+        }, function (error) { return _this.errorMessage = "Failed to save order"; });
     };
     CheckoutComponent = __decorate([
         Component({
@@ -23,7 +31,8 @@ var CheckoutComponent = /** @class */ (function () {
             templateUrl: "checkout.component.html",
             styleUrls: ['checkout.component.css']
         }),
-        __metadata("design:paramtypes", [DataService])
+        __metadata("design:paramtypes", [DataService,
+            Router])
     ], CheckoutComponent);
     return CheckoutComponent;
 }());

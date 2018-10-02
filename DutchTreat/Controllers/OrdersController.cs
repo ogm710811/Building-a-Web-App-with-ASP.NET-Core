@@ -85,8 +85,8 @@ namespace DutchTreat.Controllers
                         newOrder.OrderDate = DateTime.Now;
                     }
 
-                    var currentUser = await _userManager.FindByNameAsync(User.Identity.Name);
-                    newOrder.User = currentUser;
+                    //var currentUser = await _userManager.FindByNameAsync(User.Identity.Name);
+                    //newOrder.User = currentUser;
 
                     _repository.AddOrder(newOrder);
                     if (_repository.SaveAll())

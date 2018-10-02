@@ -8,7 +8,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
-import { DataService } from '../services/data.service';
+import { DataService } from '../services/dataService';
 import { Router } from '@angular/router';
 var LoginComponent = /** @class */ (function () {
     function LoginComponent(dataService, router) {
@@ -18,11 +18,23 @@ var LoginComponent = /** @class */ (function () {
             username: '',
             password: ''
         };
+        this.errorMessage = '';
     }
     LoginComponent.prototype.ngOnInit = function () {
     };
     LoginComponent.prototype.onLogin = function () {
-        // call login service
+        var _this = this;
+        this.dataService.login(this.credentials)
+            .subscribe(function (success) {
+            if (success) {
+                if (_this.dataService.order.items.length == 0) {
+                    _this.router.navigate(['/']);
+                }
+                else {
+                    _this.router.navigate(['checkout']);
+                }
+            }
+        }, function (error) { return _this.errorMessage = "Failed to login"; });
     };
     LoginComponent = __decorate([
         Component({

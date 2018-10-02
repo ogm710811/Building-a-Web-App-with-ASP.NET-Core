@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DutchTreat.Data.Entities;
 using DutchTreat.Models;
+using DutchTreat.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -22,17 +23,15 @@ namespace DutchTreat.Controllers
         private readonly UserManager<StoreUser> _userManager;
         private readonly IConfiguration _config;
 
-        public AccountController(
-            ILogger<AccountController> logger,
-            SignInManager<StoreUser> signInManager,
-            UserManager<StoreUser> userManager,
-            IConfiguration config
-            )
+        public AccountController(ILogger<AccountController> logger,
+          SignInManager<StoreUser> signInManager,
+          UserManager<StoreUser> userManager,
+          IConfiguration config)
         {
-            this._logger = logger;
-            this._signInManager = signInManager;
-            this._userManager = userManager;
-            this._config = config;
+            _logger = logger;
+            _signInManager = signInManager;
+            _userManager = userManager;
+            _config = config;
         }
 
         public IActionResult Login()
@@ -41,6 +40,7 @@ namespace DutchTreat.Controllers
             {
                 return RedirectToAction("Index", "App");
             }
+
             return View();
         }
 
@@ -49,11 +49,10 @@ namespace DutchTreat.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await this._signInManager.PasswordSignInAsync(
-                    model.Username,
-                    model.Password,
-                    model.RememberMe,
-                    false);
+                var result = await _signInManager.PasswordSignInAsync(model.Username,
+                  model.Password,
+                  model.RememberMe,
+                  false);
 
                 if (result.Succeeded)
                 {
@@ -63,18 +62,20 @@ namespace DutchTreat.Controllers
                     }
                     else
                     {
-                        RedirectToAction("Shop", "App");
+                        return RedirectToAction("Shop", "App");
                     }
                 }
             }
+
             ModelState.AddModelError("", "Failed to login");
+
             return View();
         }
 
         [HttpGet]
         public async Task<IActionResult> Logout()
         {
-            await this._signInManager.SignOutAsync();
+            await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "App");
         }
 
@@ -88,26 +89,26 @@ namespace DutchTreat.Controllers
                 if (user != null)
                 {
                     var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);
+
                     if (result.Succeeded)
                     {
-                        // create token
+                        // Create the token
                         var claims = new[]
                         {
-                            new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-                            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                            // new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName) // we're not going to use this for simplicity
-                        };
+              new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+              new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+              new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName)
+            };
 
                         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]));
                         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
                         var token = new JwtSecurityToken(
-                                _config["Tokens:Issuer"],
-                                _config["Tokens:Audience"],
-                                claims,
-                                expires: DateTime.UtcNow.AddMinutes(30),
-                                signingCredentials: creds                            
-                            );
+                          _config["Tokens:Issuer"],
+                          _config["Tokens:Audience"],
+                          claims,
+                          expires: DateTime.Now.AddMinutes(30),
+                          signingCredentials: creds);
 
                         var results = new
                         {
@@ -122,5 +123,6 @@ namespace DutchTreat.Controllers
 
             return BadRequest();
         }
+
     }
 }
